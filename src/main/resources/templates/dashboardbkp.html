@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Dashboard</title>
+</head>
+<body>
+<h1>Welcome to the Dashboard</h1>
+
+<!-- Common buttons for all roles -->
+<button type="button">Common Action 1</button>
+<button type="button">Common Action 2</button>
+<button type="button">Common Action 3</button>
+
+<!-- Frontline-specific button -->
+<button th:if="${role == 'FRONTLINE' || role == 'ADMIN'}" type="button">Frontline Only Action</button>
+
+<!-- Admin-specific actions -->
+<div th:if="${role == 'ADMIN'}">
+    <button type="button">Admin Special Action</button>
+    <button type="button">Care Feature (Admin Access)</button>
+    <button type="button">Frontline Feature (Admin Access)</button>
+</div>
+
+<!-- Care-specific button -->
+<button th:if="${role == 'CARE' || role == 'ADMIN'}" type="button">Care Only Action</button>
+</body>
+</html>

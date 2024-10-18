@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <style>
+        .tab {
+            display: flex;
+        }
+        .tab button {
+            padding: 10px;
+            margin-right: 5px;
+            cursor: pointer;
+        }
+        .tabcontent {
+            display: none;
+            padding: 10px;
+            border-top: none;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Welcome to the Dashboard</h1>
+
+<div class="tab">
+    <!-- Common buttons for all roles -->
+    <button class="tablinks" onclick="openPage('ecoTab')">Eco</button>
+    <button class="tablinks" onclick="openPage('torchTab')">Torch</button>
+
+    <!-- Admin and Care role-specific button (Activation) -->
+    <button th:if="${role == 'ADMIN' || role == 'CARE'}" class="tablinks" onclick="openPage('activationTab')">Activation</button>
+</div>
+
+<div id="activationTab" class="tabcontent">
+    <h3>Activation Content</h3>
+    <p>Content for Activation.</p>
+</div>
+
+<div id="ecoTab" class="tabcontent">
+    <h3>Eco Content</h3>
+    <p>Content for Eco.</p>
+</div>
+
+<div id="torchTab" class="tabcontent">
+    <h3>Torch Content</h3>
+    <p>Content for Torch.</p>
+</div>
+
+<script>
+    function openPage(pageName) {
+        var i, tabcontent;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        document.getElementById(pageName).style.display = "block";
+    }
+</script>
+
+</body>
+</html>
